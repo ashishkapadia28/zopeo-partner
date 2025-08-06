@@ -1,0 +1,213 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Paper,
+  Container,
+  FormControlLabel,
+  Checkbox
+} from '@mui/material';
+import { ArrowBack, ArrowForward, CheckCircle } from '@mui/icons-material';
+
+// Steps in the onboarding process
+const steps = ['Account Information', 'Business Details', 'Verification'];
+
+const Onboarding = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    if (activeStep < steps.length - 1) {
+      setActiveStep(activeStep + 1);
+    } else {
+      // Submit form and redirect to success page or dashboard
+      navigate('/onboarding/success');
+    }
+  };
+
+  const handleBack = () => {
+    if (activeStep > 0) {
+      setActiveStep(activeStep - 1);
+    } else {
+      navigate('/');
+    }
+  };
+
+  const renderStepContent = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <Box sx={{ display: 'grid', gap: 3 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
+              <TextField
+                required
+                fullWidth
+                label="First Name"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                required
+                fullWidth
+                label="Last Name"
+                margin="normal"
+                variant="outlined"
+              />
+            </Box>
+            <TextField
+              required
+              fullWidth
+              label="Email Address"
+              type="email"
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              required
+              fullWidth
+              label="Password"
+              type="password"
+              margin="normal"
+              variant="outlined"
+            />
+          </Box>
+        );
+      case 1:
+        return (
+          <Box sx={{ display: 'grid', gap: 3 }}>
+            <TextField
+              required
+              fullWidth
+              label="Business Name"
+              margin="normal"
+              variant="outlined"
+            />
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
+              <FormControl fullWidth margin="normal" variant="outlined">
+                <InputLabel>Business Type</InputLabel>
+                <Select label="Business Type">
+                  <MenuItem value="retail">Retail</MenuItem>
+                  <MenuItem value="wholesale">Wholesale</MenuItem>
+                  <MenuItem value="manufacturer">Manufacturer</MenuItem>
+                  <MenuItem value="service">Service Provider</MenuItem>
+                </Select>
+              </FormControl>
+              <TextField
+                required
+                fullWidth
+                label="Tax ID / GSTIN"
+                margin="normal"
+                variant="outlined"
+              />
+            </Box>
+            <TextField
+              fullWidth
+              label="Business Description"
+              multiline
+              rows={4}
+              margin="normal"
+              variant="outlined"
+            />
+          </Box>
+        );
+      case 2:
+        return (
+          <Box>
+            <Typography variant="h6" gutterBottom>
+              Verify Your Identity
+            </Typography>
+            <Typography paragraph color="text.secondary">
+              Please upload the required documents for verification. This helps us ensure the security of our marketplace.
+            </Typography>
+            
+            <Box sx={{ mt: 3, mb: 4 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Upload ID Proof (Aadhar, Passport, or Driver's License)
+              </Typography>
+              <Button variant="outlined" component="label">
+                Choose File
+                <input type="file" hidden />
+              </Button>
+            </Box>
+            
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Upload Business Registration Document
+              </Typography>
+              <Button variant="outlined" component="label">
+                Choose File
+                <input type="file" hidden />
+              </Button>
+            </Box>
+            
+            <FormControlLabel
+              control={<Checkbox />}
+              label="I certify that all information provided is accurate and I agree to the Terms of Service and Privacy Policy."
+            />
+          </Box>
+        );
+      default:
+        return 'Unknown step';
+    }
+  };
+
+  return (
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Button
+        startIcon={<ArrowBack />}
+        onClick={handleBack}
+        sx={{ mb: 4 }}
+      >
+        {activeStep === 0 ? 'Back to Home' : 'Back'}
+      </Button>
+      
+      <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
+        <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mb: 4, fontWeight: 'bold' }}>
+          Seller Onboarding
+        </Typography>
+        
+        <Stepper activeStep={activeStep} alternativeLabel sx={{ mb: 6 }}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        
+        <Box sx={{ minHeight: '300px' }}>
+          {renderStepContent(activeStep)}
+        </Box>
+        
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4, pt: 3, borderTop: '1px solid #eee' }}>
+          <Button
+            onClick={handleBack}
+            sx={{ mr: 1 }}
+            startIcon={<ArrowBack />}
+          >
+            {activeStep === 0 ? 'Back to Home' : 'Back'}
+          </Button>
+          
+          <Button
+            variant="contained"
+            onClick={handleNext}
+            endIcon={activeStep === steps.length - 1 ? <CheckCircle /> : <ArrowForward />}
+          >
+            {activeStep === steps.length - 1 ? 'Submit Application' : 'Continue'}
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
+  );
+};
+
+export default Onboarding;

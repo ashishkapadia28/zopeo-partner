@@ -163,7 +163,7 @@ const Register: React.FC = () => {
               <Box 
                 component="img"
                 src={Logo}
-                alt="Nyrkart"
+                alt="Nyrly"
                 sx={{ 
                   height: 40, 
                   mb: 2,
@@ -179,7 +179,7 @@ const Register: React.FC = () => {
                 Create your account
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mb: -3}}>
-                Join Nyrkart to start selling your products
+                Join Nyrly to start selling your products
               </Typography>
             </Box>
             

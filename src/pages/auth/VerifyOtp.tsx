@@ -301,7 +301,7 @@ const VerifyOtp: React.FC = () => {
               <Box 
                 component="img"
                 src={Logo}
-                alt="Nyrkart"
+                alt="Nyrly"
                 sx={{ 
                   height: 40, 
                   mb: 2,

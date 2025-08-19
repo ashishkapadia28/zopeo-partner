@@ -39,7 +39,7 @@ const OfferBar: React.FC = () => {
         gap: 0.5,
       }}
     >
-      🎁 Limited Offer: 30% OFF for new sellers. Set up your Nyrkart store now!{' '}
+      🎁 Limited Offer: 30% OFF for new sellers. Set up your Nyrly store now!{' '}
       <Link
         href="/offers"
         color="inherit"

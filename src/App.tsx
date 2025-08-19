@@ -9,6 +9,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
 import Register from './pages/auth/Register';
 import VerifyOtp from './pages/auth/VerifyOtp';
+import OnboardingPage from './pages/onboarding';
 import ProtectedRoute from './components/ProtectedRoute';
 import useAuth from './hooks/useAuth';
 import { AuthContext } from './contexts/AuthContext';
@@ -151,10 +152,10 @@ const LandingPage = () => {
         <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', py: 8 }}>
           <Box sx={{ textAlign: 'center', maxWidth: '800px', mx: 'auto', width: '100%' }}>
             <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 'bold', mb: 4 }}>
-            Your products, your customers, your profits Grow with Nyrkart.
+            Your products, your customers, your profits Grow with Nyrly.
             </Typography>
             <Typography variant="h5" color="text.secondary" paragraph sx={{ mb: 6 }}>
-            Run your shop online with 0% commission, zero hustle, and everything you need to grow—powered by Nyrkart.
+            Run your shop online with 0% commission, zero hustle, and everything you need to grow—powered by Nyrly.
             </Typography>
             <Button
               variant="contained"
@@ -179,7 +180,7 @@ const LandingPage = () => {
       }}>
         <Container maxWidth="lg">
           <Typography variant="body2" color="text.secondary">
-            {new Date().getFullYear()} Nyrkart. All rights reserved.
+            {new Date().getFullYear()} Nyrly. All rights reserved.
           </Typography>
         </Container>
       </Box>
@@ -202,6 +203,11 @@ const App = () => {
                 <Route path="/verify-otp" element={<VerifyOtp />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/onboarding" element={
+                  <ProtectedRoute>
+                    <OnboardingPage />
+                  </ProtectedRoute>
+                } />
                 
                 {/* Protected routes */}
 {/* Example of a protected route that requires onboarding to be complete */}

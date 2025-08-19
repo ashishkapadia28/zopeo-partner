@@ -1,7 +1,7 @@
 # Onboarding Flow API Reference
 
 ## Overview
-This document outlines the API endpoints for the Partner Onboarding Flow in the Nyrkart Partner Portal.
+This document outlines the API endpoints for the Partner Onboarding Flow in the Nyrly Partner Portal.
 
 ## Base URL
 All endpoints are relative to the base URL of the API.

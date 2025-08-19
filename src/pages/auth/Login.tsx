@@ -58,10 +58,7 @@ const Login: React.FC = () => {
 
     setIsLoading(true);
     try {
-      await login({
-        email: formData.email,
-        password: formData.password
-      });
+      await login(formData.email, formData.password);
       enqueueSnackbar('Login successful!', { variant: 'success' });
       // The login function from useAuth will handle the redirection
     } catch (error: any) {
@@ -98,7 +95,7 @@ const Login: React.FC = () => {
             <Box 
               component="img"
               src={Logo}
-              alt="Nyrkart"
+              alt="Nyrly"
               sx={{ 
                 height: 40, 
                 mb: 2,
